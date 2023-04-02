@@ -32,6 +32,7 @@ Azure openAI Email Screen (only in **OpenAI Intergration with Power Apps V2**)
 * Power Platform Environment. You can get Developer license here. https://powerapps.microsoft.com/en-us/developerplan/  
 
 ## Demo
+OpenAI and Power Platform Integration Demo App Video: https://youtu.be/uUj6Xjx7SSo
 [![OpenAI and Power Platform Integration Demo App Video](https://i.ytimg.com/vi/uUj6Xjx7SSo/maxresdefault.jpg)](https://youtu.be/uUj6Xjx7SSo)
 
 Note: If you want to learn how to create OpenAI API Custom Connector from scratch, please check out Reza Dorrani's video 
@@ -62,4 +63,4 @@ For Azure OpenAI Custom Connector:
 ![Update Host URL](/images/4-UpdateHostURL.png)
 * Authenticate with your Secret key from Azure OpenAI resource.
 
-I will continue to build and add more features to this solution to show how we can leverage this in Power Automate, Power Virtual Agent and so more!
+I will continue to build and add more features to this solution to show how we can leverage OpenAI power in Power Automate, Power Virtual Agent and so more!
