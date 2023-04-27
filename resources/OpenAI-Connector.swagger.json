@@ -1,0 +1,430 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "OpenAI Connector",
+    "description": "API key must be entered as \"Bearer YOUR_API_KEY\"",
+    "version": "1.0"
+  },
+  "host": "api.openai.com",
+  "basePath": "/v1",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/models": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "object": {
+                  "type": "string",
+                  "description": "object"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "object": {
+                        "type": "string",
+                        "description": "object"
+                      },
+                      "created": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "created"
+                      },
+                      "owned_by": {
+                        "type": "string",
+                        "description": "owned_by"
+                      },
+                      "permission": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "id"
+                            },
+                            "object": {
+                              "type": "string",
+                              "description": "object"
+                            },
+                            "created": {
+                              "type": "integer",
+                              "format": "int32",
+                              "description": "created"
+                            },
+                            "allow_create_engine": {
+                              "type": "boolean",
+                              "description": "allow_create_engine"
+                            },
+                            "allow_sampling": {
+                              "type": "boolean",
+                              "description": "allow_sampling"
+                            },
+                            "allow_logprobs": {
+                              "type": "boolean",
+                              "description": "allow_logprobs"
+                            },
+                            "allow_search_indices": {
+                              "type": "boolean",
+                              "description": "allow_search_indices"
+                            },
+                            "allow_view": {
+                              "type": "boolean",
+                              "description": "allow_view"
+                            },
+                            "allow_fine_tuning": {
+                              "type": "boolean",
+                              "description": "allow_fine_tuning"
+                            },
+                            "organization": {
+                              "type": "string",
+                              "description": "organization"
+                            },
+                            "group": {
+                              "type": "string",
+                              "description": "group"
+                            },
+                            "is_blocking": {
+                              "type": "boolean",
+                              "description": "is_blocking"
+                            }
+                          }
+                        },
+                        "description": "permission"
+                      },
+                      "root": {
+                        "type": "string",
+                        "description": "root"
+                      },
+                      "parent": {
+                        "type": "string",
+                        "description": "parent"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "List models",
+        "description": "Lists the currently available models, and provides basic information about each one such as the owner and availability.",
+        "operationId": "ListModels",
+        "parameters": []
+      }
+    },
+    "/models/{model}": {
+      "get": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "summary": "Retrieve Model",
+        "operationId": "RetrieveModel",
+        "parameters": [
+          {
+            "name": "model",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "description": "Retrieves a model instance, providing basic information about the model such as the owner and permissioning."
+      }
+    },
+    "/completions": {
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "id"
+                },
+                "object": {
+                  "type": "string",
+                  "description": "object"
+                },
+                "created": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "created"
+                },
+                "model": {
+                  "type": "string",
+                  "description": "model"
+                },
+                "choices": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "text": {
+                        "type": "string",
+                        "description": "text"
+                      },
+                      "index": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "index"
+                      },
+                      "logprobs": {
+                        "type": "string",
+                        "description": "logprobs"
+                      },
+                      "finish_reason": {
+                        "type": "string",
+                        "description": "finish_reason"
+                      }
+                    }
+                  },
+                  "description": "choices"
+                },
+                "usage": {
+                  "type": "object",
+                  "properties": {
+                    "prompt_tokens": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "prompt_tokens"
+                    },
+                    "completion_tokens": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "completion_tokens"
+                    },
+                    "total_tokens": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "total_tokens"
+                    }
+                  },
+                  "description": "usage"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create Completion",
+        "operationId": "CreateCompletion",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "model": {
+                  "type": "string",
+                  "description": "ID of the model to use.",
+                  "title": "model",
+                  "x-ms-dynamic-values": {
+                    "operationId": "ListModels",
+                    "value-path": "id",
+                    "value-collection": "data",
+                    "value-title": "id"
+                  },
+                  "default": "text-davinci-003"
+                },
+                "prompt": {
+                  "type": "string",
+                  "description": "The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays.",
+                  "title": "prompt"
+                },
+                "max_tokens": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The maximum number of tokens to generate in the completion.",
+                  "title": "max_tokens",
+                  "default": 16
+                },
+                "temperature": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.",
+                  "title": "temperature",
+                  "default": 1
+                },
+                "top_p": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered.",
+                  "title": "top_p",
+                  "default": 1
+                },
+                "n": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of completions to generate for each prompt.",
+                  "title": "n",
+                  "default": 1
+                },
+                "stream": {
+                  "type": "boolean",
+                  "description": "Whether to stream back partial progress. If set, tokens will be sent as data-only server-sent events as they become available, with the stream terminated by a data: [DONE] message.",
+                  "title": "stream",
+                  "enum": [
+                    "",
+                    true,
+                    false
+                  ],
+                  "default": false
+                },
+                "logprobs": {
+                  "type": "string",
+                  "description": "Include the log probabilities on the logprobs most likely tokens, as well the chosen tokens. For example, if logprobs is 5, the API will return a list of the 5 most likely tokens.",
+                  "title": "logprobs"
+                },
+                "stop": {
+                  "type": "string",
+                  "description": "stop"
+                }
+              },
+              "required": [
+                "model",
+                "prompt"
+              ]
+            }
+          }
+        ],
+        "description": "Creates a completion for the provided prompt and parameters"
+      }
+    },
+    "/images/generations": {
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "created": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "created"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "url": {
+                        "type": "string",
+                        "description": "url"
+                      }
+                    }
+                  },
+                  "description": "data"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create image",
+        "operationId": "CreateImage",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "prompt": {
+                  "type": "string",
+                  "description": "A text description of the desired image(s). The maximum length is 1000 characters.",
+                  "title": "prompt"
+                },
+                "n": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The number of images to generate. Must be between 1 and 10.",
+                  "title": "n",
+                  "enum": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10
+                  ],
+                  "default": 1
+                },
+                "size": {
+                  "type": "string",
+                  "description": "The size of the generated images. Must be one of 256x256, 512x512, or 1024x1024.",
+                  "title": "size",
+                  "default": "256x256",
+                  "enum": [
+                    "256x256",
+                    "512x512",
+                    "1024x1024"
+                  ]
+                },
+                "response_format": {
+                  "type": "string",
+                  "description": "The format in which the generated images are returned. Must be one of url or b64_json.",
+                  "title": "response_format",
+                  "default": "url",
+                  "enum": [
+                    "url",
+                    "b64_json"
+                  ]
+                },
+                "user": {
+                  "type": "string",
+                  "description": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse.",
+                  "title": "user"
+                }
+              },
+              "required": [
+                "prompt"
+              ]
+            }
+          }
+        ],
+        "description": "Creates an image given a prompt."
+      }
+    }
+  },
+  "definitions": {},
+  "parameters": {},
+  "responses": {},
+  "securityDefinitions": {
+    "API Key": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  },
+  "security": [
+    {
+      "API Key": []
+    }
+  ],
+  "tags": []
+}
